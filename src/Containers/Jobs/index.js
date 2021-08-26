@@ -4,7 +4,9 @@ import { useSelector } from 'react-redux'
 import {
     View, 
     ScrollView,
+    Image,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { getCampaigns } from '@/Selectors/Jobs';
 import JobItem from '@/Components/JobItem'
 import CCText from '../../Components/CCText';
@@ -15,14 +17,40 @@ const Jobs = ({ navigation }) => {
     const campaigns = useSelector(getCampaigns);
     
     return (
+        
         <ScrollView
             style={{
                 backgroundColor: Colors.background,
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
             }}
             contentContainerStyle={{
                 paddingTop: 50,
             }}
         >
+            <Image
+                source={require('../../Assets/background.jpeg')}
+                style={{
+                    opacity: 0.7,
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    height: 400,
+                }}
+            />
+            <LinearGradient
+                colors={['rgba(0,0,0,0.3)', Colors.background]}
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 400,
+                }}
+            />
             <View
                 style={{
                     marginHorizontal: 20,

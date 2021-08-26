@@ -33,7 +33,7 @@ const JobItem = ({
     return (
         <View
             style={{
-                backgroundColor: Colors.background,
+                //backgroundColor: Colors.background,
                 width:  Dimensions.get('window').width * 0.9,
             }}
         >
