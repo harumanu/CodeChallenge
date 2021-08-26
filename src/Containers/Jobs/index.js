@@ -73,16 +73,41 @@ const Jobs = ({ navigation }) => {
                     <View
                         key={campaign.title}
                     >
-                        <CCText
-                            size="m"
-                            bold
+                        <View
                             style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
                                 padding: 20,
                                 paddingBottom: 0,
                             }}
                         >
-                            {campaign.title}
-                        </CCText>
+                            <CCText
+                                size="m"
+                                bold
+                            >
+                                {campaign.title}
+                            </CCText>
+                            <View
+                                style={{
+                                    width: 32,
+                                    height: 32,
+                                    borderRadius: 16,
+                                    backgroundColor: Colors.brand4,
+                                    marginRight: 20,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                <CCText
+                                    size="s"
+                                    bold
+                                    color={Colors.white}
+                                >
+                                    {campaign.jobs.length}
+                                </CCText>
+                            </View>
+                        </View>
                         <ScrollView
                             horizontal
                             showsHorizontalScrollIndicator={false}
