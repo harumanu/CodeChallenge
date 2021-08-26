@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Image,
 } from 'react-native';
@@ -20,6 +21,12 @@ const Logo = ({
             }}
         />
     );
-}
+};
+
+Logo.propTypes = {
+    size: PropTypes.number,
+    source: PropTypes.string.isRequired,
+    style: PropTypes.object,
+};
 
 export default Logo;

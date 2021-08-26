@@ -12,22 +12,15 @@ import {
 } from 'redux-persist'
 import { configureStore } from '@reduxjs/toolkit'
 
-import startup from './Startup'
-import user from './User'
-import theme from './Theme'
 import jobs from './Jobs';
 
 const reducers = combineReducers({
-  startup,
-  user,
-  theme,
   jobs,
 })
 
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['theme'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)

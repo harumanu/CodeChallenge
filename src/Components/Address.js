@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     View,
 } from 'react-native';
@@ -20,6 +21,14 @@ const Address = ({ address }) => {
             </CCText>
         </View>
     );
-}
+};
+
+Address.propTypes = {
+    address: PropTypes.shape({
+        street: PropTypes.string,
+        postal_code: PropTypes.string,
+        city: PropTypes.string
+    }).isRequired,
+};
 
 export default Address;

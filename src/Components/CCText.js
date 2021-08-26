@@ -1,12 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Text,
 } from 'react-native';
+import { Colors } from '../Theme/Colors';
 
 const CCText = ({
     size = 's',
-    color = '#FFF',
+    color = Colors.white,
     fontWeight = '400',
+    bold = false,
     style = {},
     children,
 }) => {
@@ -28,7 +31,7 @@ const CCText = ({
         <Text
             style={{
                 color,
-                fontWeight,
+                fontWeight : bold ? '800' : fontWeight,
                 fontSize,
                 ...style,
             }}
@@ -36,6 +39,15 @@ const CCText = ({
             {children}
         </Text>
     )
-}
+};
+
+CCText.propTypes = {
+    size: PropTypes.string,
+    color: PropTypes.string,
+    fontWeight: PropTypes.string,
+    bold: PropTypes.bool,
+    style: PropTypes.object,
+    children: PropTypes.node,
+};
 
 export default CCText;

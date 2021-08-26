@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     View,
     ImageBackground,
@@ -61,19 +62,28 @@ const JobTop = ({
                 />
                 <CCText
                     size="l"
-                    fontWeight={'800'}
+                    bold
                 >
                     {employerName}
                 </CCText>
                 <CCText
-                    fontWeight={'800'}
                     size="s"
+                    bold
                 >
                     {department}
                 </CCText>
             </ImageBackground>
         </Animated.View>
     )
+};
+
+JobTop.propTypes = {
+    employerName: PropTypes.string.isRequired,
+    department: PropTypes.string.isRequired,
+    backgroundImage: PropTypes.string.isRequired,
+    logo: PropTypes.string.isRequired,
+    height: PropTypes.number.isRequired,
+    scrollValue: PropTypes.object.isRequired,
 };
 
 export default JobTop;

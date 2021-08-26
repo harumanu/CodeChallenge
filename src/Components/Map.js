@@ -1,5 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import { Colors } from '../Theme/Colors';
 import CCText from './CCText';
 
 const Map = () => {
@@ -18,18 +20,25 @@ const Map = () => {
             <View
                 style={{
                     backgroundColor: '#111',
-                    paddingVertical: 5,
-                    paddingHorizontal: 10,
+                    padding: 20,
                     borderRadius: 6,
+                    alignItems: 'center',
                 }}
             >
-                <CCText>
+                <Icon
+                    name="map"
+                    color={Colors.white}
+                    size={48}
+                />
+                <CCText
+                    fontWeight="600"
+                >
                     Map placeholder
                 </CCText>
             </View>
         </View>
     )
 
-}
+};
 
 export default Map;

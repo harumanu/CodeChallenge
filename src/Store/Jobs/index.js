@@ -1,9 +1,6 @@
-import { createSelector } from '@reduxjs/toolkit'
 import { buildSlice } from '@thecodingmachine/redux-toolkit-wrapper'
 import { State } from 'react-native-gesture-handler'
-import {
-    chain,
-} from 'lodash';
+
 // This state is common to all the "user" module, and can be modified by any "user" reducers
 const sliceInitialState = {
     jobs: [
@@ -356,31 +353,5 @@ const sliceInitialState = {
         }
     ]
 }
-
-export const getJobs = state => state.jobs.jobs;
-
-export const getCampaigns = createSelector(
-    getJobs, (jobs) => {
-        /* 
-        * Since we don't have a predefined list of campaigns to work with, 
-        * we reduce the campaigns from the jobs themselves and then map
-        * to a new list. This will keep the UI code clean and we leave
-        * the data handling open to future improvements.
-        * 
-        * Needed to do some weird string mapping here because the campaign
-        * titles were inconsistent in the data set
-        */
-        const campaigns = chain(jobs)
-            .reduce((arr, j) => [...arr, ...j.campaigns], [])
-            .uniqBy(title => title.toLowerCase())
-            .map(campaignName => ({
-                title: campaignName,
-                jobs: jobs.filter(j => j.campaigns.map(t => t.toLowerCase()).includes(campaignName.toLowerCase()))
-            }))
-            .value();
-        
-            console.log('campaigns', campaigns)
-        return campaigns;
-    });
 
 export default buildSlice('jobs', [], sliceInitialState).reducer

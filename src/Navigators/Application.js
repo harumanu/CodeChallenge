@@ -1,85 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { IndexStartupContainer } from '@/Containers'
 import Jobs from '@/Containers/Jobs';
 import Job from '@/Containers/Job';
-import { useSelector } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native'
 import { navigationRef } from '@/Navigators/Root'
 import { SafeAreaView, StatusBar } from 'react-native'
-import { useTheme } from '@/Theme'
+import { Colors } from '../Theme/Colors';
 
 const Stack = createStackNavigator()
 
-let MainNavigator
-
 // @refresh reset
 const ApplicationNavigator = () => {
-  const { Layout, darkMode, NavigationTheme } = useTheme()
-  const { colors } = NavigationTheme
-  const [isApplicationLoaded, setIsApplicationLoaded] = useState(false)
-  const applicationIsLoading = useSelector(state => state.startup.loading)
-
-  useEffect(() => {
-    if (MainNavigator == null && !applicationIsLoading) {
-      MainNavigator = require('@/Navigators/Main').default
-      setIsApplicationLoaded(true)
-    }
-  }, [applicationIsLoading])
-
-  // on destroy needed to be able to reset when app close in background (Android)
-  useEffect(
-    () => () => {
-      setIsApplicationLoaded(false)
-      MainNavigator = null
-    },
-    [],
-  )
 
   return (
-    <SafeAreaView style={[Layout.fill, { backgroundColor: '#121314' }]}>
-      <NavigationContainer theme={NavigationTheme} ref={navigationRef}>
+    <SafeAreaView style={{backgroundColor: Colors.background, flex: 1, }}>
+      <NavigationContainer ref={navigationRef}>
         <StatusBar barStyle={'light-content'} />
         <Stack.Navigator>
           <Stack.Screen 
             name="Campaigns" 
             component={Jobs}
             options={{
-              headerStyle: {
-                backgroundColor: '#000',
-                borderBottomColor: 'red',
-              },
-              headerTitleStyle: {
-                color: '#FFF',
-              }
+              headerShown: false,
             }}
           />
           <Stack.Screen 
             name="Job" 
             component={Job} 
             options={{
+              animationEnabled: false,
               headerTransparent: true,
               headerBackTitleStyle: {
-                color: '#FFF',
+                color: Colors.white,
               },
-              headerTintColor: '#FFF',
+              headerTintColor: Colors.white,
               headerStyle: {
                 backgroundColor: 'transparent',
+                height: 80,
               },
               headerTitleStyle: {
-                color: '#FFF',
+                color: Colors.white,
               }
           }}/>
-          <Stack.Screen name="Startup" component={IndexStartupContainer} />
-          {/*isApplicationLoaded && MainNavigator != null && (
-            <Stack.Screen
-              name="Main"
-              component={MainNavigator}
-              options={{
-                animationEnabled: false,
-              }}
-            />
-            )*/}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>
