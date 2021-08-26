@@ -156,7 +156,7 @@ const Job = ({ route, navigation }) => {
                             right={20}
                             top={-120}
                             color={Colors.brand1}
-                            content="2"
+                            content={rating}
                             icon="star"
                             index={4}
                         />
@@ -164,7 +164,7 @@ const Job = ({ route, navigation }) => {
                             right={80}
                             top={-115}
                             color={Colors.brand2}
-                            content="6"
+                            content={shifts.length}
                             icon="calendar"
                             index={3}
                         />
@@ -172,7 +172,7 @@ const Job = ({ route, navigation }) => {
                             right={140}
                             top={-110}
                             color={Colors.brand3}
-                            content={"22km"}
+                            content={`${distance}km`}
                             icon="home"
                             index={2}
                         />
